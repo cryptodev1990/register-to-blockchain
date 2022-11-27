@@ -1,15 +1,22 @@
-import { Contract, ethers } from "ethers";
+import { ethers } from "ethers";
 import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
+import { abi } from "../abi";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function Admin() {
+  const CONTRACT_ADDRESS = "0x5E20F89228F7Ae1DaD1b0168e39936E56DfbD80B";
   const [values, setValues] = useState({
     id: 0,
     name: "",
     department: "",
     contact: "",
   });
+  const [myContract, setMyContract] = useState(null);
+
+  const contractABI = abi;
+  let provider;
+  let signer;
 
   const handleChange = (e) => {
     setValues((values) => ({
@@ -25,6 +32,38 @@ export default function Admin() {
     else return false;
   };
 
+  async function connectToMetamask() {
+    try {
+      await window.ethereum.enable();
+      return true;
+    } catch (err) {
+      return false;
+    }
+  }
+
+  async function register() {
+    let admin = await connectToMetamask();
+    provider = new ethers.providers.Web3Provider(window.ethereum);
+    signer = provider.getSigner();
+    try {
+      const contract = new ethers.Contract(
+        CONTRACT_ADDRESS,
+        contractABI,
+        signer
+      );
+      setMyContract(contract);
+      const address = await signer.getAddress();
+      await contract.adminRegister(
+        values.id,
+        values.name,
+        values.department,
+        values.contact
+      );
+    } catch (err) {
+      alert("CONTRACT_ADDRESS not set properly!");
+    }
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -36,11 +75,11 @@ export default function Admin() {
       toast.error("Please insert the name");
       return;
     }
-    if (values.id === "") {
+    if (values.department === "") {
       toast.error("Please insert the department");
       return;
     }
-    if (values.id === "") {
+    if (values.contact === "") {
       toast.error("Please insert the email");
       return;
     }
@@ -48,6 +87,7 @@ export default function Admin() {
       toast.warning("Incorrect email.");
       return;
     }
+    register();
   };
 
   return (
