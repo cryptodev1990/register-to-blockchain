@@ -13,7 +13,8 @@ export default function Header() {
         <h4 className="hover:cursor-pointer text-gray-600">Home</h4>
         <h4 className="hover:cursor-pointer text-gray-600" onClick={() => navigate("/admin")}>Admin</h4>
         <h4 className="hover:cursor-pointer text-gray-600" onClick={() => navigate("/teacher")}>Teacher</h4>
-        <h4 className="hover:cursor-pointer text-gray-600">Student</h4>
+        <h4 className="hover:cursor-pointer text-gray-600" onClick={() => navigate("/studentregister")}>Student Register</h4>
+        <h4 className="hover:cursor-pointer text-gray-600" onClick={() => navigate("/student")}>Student</h4>
         <h4 className="hover:cursor-pointer text-gray-600">About</h4>
         <img src={Github} alt="github" title="Github title" className="h-7 w-7 hover:cursor-pointer mx-16" />
       </div>
