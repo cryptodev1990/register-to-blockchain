@@ -142,13 +142,6 @@ export default function StudentRegister() {
             />
           </div>
           <div className="flex justify-between">
-            <h3>Enter Student Address:</h3>
-            <input
-              className="border-2 border-gray-700 px-5 rounded"
-              name="address"
-            />
-          </div>
-          <div className="flex justify-between">
             <h3>Enter Student Contact:</h3>
             <input
               className="border-2 border-gray-700 px-5 rounded"

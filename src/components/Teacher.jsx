@@ -58,13 +58,16 @@ export default function Teacher() {
       <h5>
         You can enter private key of your wallet Or you connect Metamask wallet
       </h5>
-      <input
-        className="border-2 border-gray-700 px-5 rounded"
-        name="number"
-        type="number"
-        value={id}
-        onChange={(e) => handleChange(e)}
-      />
+      <div className="flex gap-5 my-5">
+        <div>Input your Id:</div>
+        <input
+          className="border-2 border-gray-700 px-5 rounded"
+          name="number"
+          type="number"
+          value={id}
+          onChange={(e) => handleChange(e)}
+        />
+      </div>
       <div className="flex w-full justify-center mt-5 items-center">
         <input
           type="text"

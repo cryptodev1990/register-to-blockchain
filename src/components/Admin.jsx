@@ -126,13 +126,6 @@ export default function Admin() {
             />
           </div>
           <div className="flex justify-between">
-            <h3>Enter Teacher Address:</h3>
-            <input
-              className="border-2 border-gray-700 px-5 rounded"
-              name="address"
-            />
-          </div>
-          <div className="flex justify-between">
             <h3>Enter Teacher Contact:</h3>
             <input
               className="border-2 border-gray-700 px-5 rounded"

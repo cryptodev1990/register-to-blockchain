@@ -30,7 +30,7 @@ export default function Student() {
     setValues((values) => ({
       ...values,
       [e.target.name]: e.target.value,
-    }))
+    }));
   };
 
   async function register() {
@@ -47,7 +47,11 @@ export default function Student() {
       setMyContract(contract);
       const address = await signer.getAddress();
       console.log(address);
-      await contract.studentCompleteRegister(values.teacherId, values.studentId, address);
+      await contract.studentCompleteRegister(
+        values.teacherId,
+        values.studentId,
+        address
+      );
     } catch (err) {
       alert("CONTRACT_ADDRESS not set properly!");
     }
@@ -64,20 +68,26 @@ export default function Student() {
       <h5>
         You can enter private key of your wallet Or you connect Metamask wallet
       </h5>
-      <input
-        className="border-2 border-gray-700 px-5 rounded my-3"
-        name="number"
-        type="number"
-        value={values.teacherId}
-        onChange={(e) => handleChange(e)}
-      />
-      <input
-        className="border-2 border-gray-700 px-5 rounded"
-        name="number"
-        type="number"
-        value={values.studentId}
-        onChange={(e) => handleChange(e)}
-      />
+      <div className="flex my-3 justify-between gap-5">
+        <div>Input teacher's Id:</div>
+        <input
+          className="border-2 border-gray-700 px-5 rounded"
+          name="number"
+          type="number"
+          value={values.teacherId}
+          onChange={(e) => handleChange(e)}
+        />
+      </div>
+      <div className="flex my-3 justify-between gap-12">
+        <div>Input your Id:</div>
+        <input
+          className="border-2 border-gray-700 px-5 rounded"
+          name="number"
+          type="number"
+          value={values.teacherId}
+          onChange={(e) => handleChange(e)}
+        />
+      </div>
       <div className="flex w-full justify-center mt-5 items-center">
         <input
           type="text"
