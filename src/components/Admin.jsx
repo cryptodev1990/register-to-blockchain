@@ -44,6 +44,7 @@ export default function Admin() {
   async function register() {
     let admin = await connectToMetamask();
     provider = new ethers.providers.Web3Provider(window.ethereum);
+    console.log(provider);
     signer = provider.getSigner();
     try {
       const contract = new ethers.Contract(
